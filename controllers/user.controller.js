@@ -53,6 +53,36 @@ async function findUserById(req, res) {
   }
 }
 
+async function authUser (req, res){
+  try {
+      const { nameUser, password } = req.params;
+
+      //Execute query
+      const user = await dbManager.User.auth({
+          //insertar autenticación
+          where: {
+              username: username,
+              password: password
+          }
+
+      });
+      //Send response
+      if(user)
+      res.json(true);
+      else 
+      res.json(false);
+
+  } catch (e) {
+      // Print error on console
+      console.log(e);
+      // Send error message as a response 
+      res.status(500).send({
+          message: "Some error occurred"
+      });
+  }
+}
+
 exports.createUser = createUser;
 exports.findAllUsers = findAllUsers;
 exports.findUserById = findUserById;
+exports.authUser = authUser;
