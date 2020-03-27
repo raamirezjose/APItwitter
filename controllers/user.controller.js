@@ -40,12 +40,11 @@ async function findAllUsers(req, res) {
 async function findUserById(req, res) {
   try {
     const { idUser, idPost } = req.params;
-    const user = await dbManager.user.findOne({
+    const user = await dbManager.User.findOne({
       where: {
         idUser: idUser
       }
     });
-
     res.json(user);
   } catch (error) {
     res.status(500).send({
@@ -56,10 +55,9 @@ async function findUserById(req, res) {
 
 async function authUser(req, res) {
   try {
-    const { nameUser, password } = req.params;
-
+    const { username, password } = req.body;
     //Execute query
-    const user = await dbManager.User.auth({
+    const user = await dbManager.User.findOne({
       //insertar autenticación
       where: {
         username: username,
@@ -67,8 +65,8 @@ async function authUser(req, res) {
       }
     });
     //Send response
-    if (user) res.json(true);
-    else res.json(false);
+    if (user) res.json("usuario logeado correctamente");
+    else res.json("usuario o contraseña incorrecta");
   } catch (e) {
     // Print error on console
     console.log(e);
