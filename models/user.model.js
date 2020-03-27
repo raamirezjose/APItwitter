@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       //agregar password
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       creation_date: Sequelize.DATE
     },

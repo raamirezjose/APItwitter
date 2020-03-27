@@ -7,13 +7,14 @@ function createUser(req, res) {
   }
   const newUserObject = {
     username: req.body.username,
-    creation_date: red.body.creations_date
+    creation_date: req.body.creations_date,
+    password: req.body.password
   };
   dbManager.User.create(newUserObject)
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       res.status(500).send({
         menssage: "SOMENTHING HAPPENED, ERROR"
@@ -26,7 +27,7 @@ async function findAllUsers(req, res) {
     const allUsers = await dbManager.User.findAll();
 
     res.send({
-      data: allUsers
+      usuarios: allUsers
     });
   } catch (error) {
     console.log(error);
@@ -53,32 +54,28 @@ async function findUserById(req, res) {
   }
 }
 
-async function authUser (req, res){
+async function authUser(req, res) {
   try {
-      const { nameUser, password } = req.params;
+    const { nameUser, password } = req.params;
 
-      //Execute query
-      const user = await dbManager.User.auth({
-          //insertar autenticación
-          where: {
-              username: username,
-              password: password
-          }
-
-      });
-      //Send response
-      if(user)
-      res.json(true);
-      else 
-      res.json(false);
-
+    //Execute query
+    const user = await dbManager.User.auth({
+      //insertar autenticación
+      where: {
+        username: username,
+        password: password
+      }
+    });
+    //Send response
+    if (user) res.json(true);
+    else res.json(false);
   } catch (e) {
-      // Print error on console
-      console.log(e);
-      // Send error message as a response 
-      res.status(500).send({
-          message: "Some error occurred"
-      });
+    // Print error on console
+    console.log(e);
+    // Send error message as a response
+    res.status(500).send({
+      message: "Some error occurred"
+    });
   }
 }
 

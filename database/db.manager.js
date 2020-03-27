@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const sequelizeConnection = require("./db.connection");
+const sequelizeConnection = require("./db.connection.js");
 
 //IMPORT MODELS
 const UserModel = require("../models/user.model");
@@ -22,4 +22,4 @@ const db = {
   sequelizeConnection
 };
 
-models.exposrts = db;
+module.exports = db;
