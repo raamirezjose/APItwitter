@@ -1,15 +1,15 @@
 const dbManager = require("../database/db.manager");
 
-function createUser(req, res) {
+function createTweet(req, res) {
   if (!req.body) {
     res.status(400).send({ menssage: "REQUEST IS EMPTY" });
     return;
   }
-  const newUserObject = {
-    username: req.body.username,
-    password: req.body.password
+  const newTweetObject = {
+    userid: req.body.userid,
+    Text: req.body.Text
   };
-  dbManager.User.create(newUserObject)
+  dbManager.Tweet.create(newTweetObject)
     .then((data) => {
       res.send(data);
     })
@@ -76,7 +76,4 @@ async function authUser(req, res) {
   }
 }
 
-exports.createUser = createUser;
-exports.findAllUsers = findAllUsers;
-exports.findUserById = findUserById;
-exports.authUser = authUser;
+exports.createTweet = createTweet;
