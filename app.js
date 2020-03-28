@@ -19,17 +19,18 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/tweet", tweetRouter);
 
 dbManager.sequelizeConnection
   .authenticate()
   .then(() => {
     console.log("****Connection has been established****");
-    
+
     dbManager.sequelizeConnection.sync().then(() => {
       console.log("Database Synced");
     });
   })
-  .catch(error => {
+  .catch((error) => {
     console.log("Unable to connect to the database:", error);
   });
 
