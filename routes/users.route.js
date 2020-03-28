@@ -8,6 +8,6 @@ router.get("/:idUser", userController.findUserById);
 
 router.post("/", userController.createUser);
 
-router.post("/:user_Pass", userController.authUser);
+router.get("/:user_Pass", userController.authUser);
 
 module.exports = router;
