@@ -7,7 +7,6 @@ function createUser(req, res) {
   }
   const newUserObject = {
     username: req.body.username,
-    creation_date: req.body.creations_date,
     password: req.body.password
   };
   dbManager.User.create(newUserObject)
