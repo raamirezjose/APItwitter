@@ -6,14 +6,14 @@ function createTweet(req, res) {
     return;
   }
   const newTweetObject = {
-    userid: req.body.userid,
-    Text: req.body.Text
+    idUser: req.body.idUser,
+    text: req.body.text
   };
   dbManager.Tweet.create(newTweetObject)
-    .then((data) => {
+    .then(data => {
       res.send(data);
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
       res.status(500).send({
         menssage: "SOMENTHING HAPPENED, ERROR"

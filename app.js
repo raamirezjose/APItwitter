@@ -5,7 +5,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users.route");
-
+var tweetRouter = require("./routes/tweet.route");
 //IMPORT DB MANAGER
 const dbManager = require("./database/db.manager");
 
@@ -30,7 +30,7 @@ dbManager.sequelizeConnection
       console.log("Database Synced");
     });
   })
-  .catch((error) => {
+  .catch(error => {
     console.log("Unable to connect to the database:", error);
   });
 

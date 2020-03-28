@@ -2,7 +2,7 @@ module.exports = (sequelize, Sequelize) => {
   const Tweet = sequelize.define(
     "Tweet",
     {
-      idUser: {
+      idTweet: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -10,8 +10,12 @@ module.exports = (sequelize, Sequelize) => {
       text: {
         type: Sequelize.STRING,
         unique: true
+      },
+      idUser: {
+        type: Sequelize.INTEGER
       }
     },
+
     {
       tableName: "Tweet"
     }
