@@ -20,6 +20,28 @@ function createTweet(req, res) {
       });
     });
 }
+async function findAllTweets(req, res) {
+  try {
+    const allTweets = await dbManager.Tweet.findAll();
+
+    res.json({
+      usuarios: allTweets
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      menssage: "ERROR, SORRY"
+    });
+  }
+}
+
+function deleteTweet(req, res) {
+  const { tweet } = req.params;
+  dbManager.Tweet.destroy({ where: { tweet: tweet } }).catch(error => {
+    console.log(error);
+    res.status(500).send({ message: "Some error occurred" });
+  });
+}
 
 async function findAllUsers(req, res) {
   try {
@@ -77,3 +99,5 @@ async function authUser(req, res) {
 }
 
 exports.createTweet = createTweet;
+exports.findAllTweets = findAlltweets;
+exports.deleteTweet = deleteTweet;

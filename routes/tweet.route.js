@@ -7,5 +7,6 @@ const tweetController = require("../controllers/tweet.controller");
 router.get("/:idUser", tweetController.findUserById); */
 
 router.post("/createTweet", tweetController.createTweet);
+router.post("/alltweets", tweetController.findAllTwets);
 
 module.exports = router;
