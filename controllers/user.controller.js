@@ -52,6 +52,22 @@ async function findUserById(req, res) {
   }
 }
 
+async function deleteUserById(req, res) {
+  try {
+    const { idUser } = req.params;
+    const user = await dbManager.User.destroy({
+      where: {
+        idUser: idUser
+      }
+    });
+    res.json("usuario eliminado correctamente");
+  } catch (error) {
+    res.status(500).send({
+      menssage: "ERROR, SORRY"
+    });
+  }
+}
+
 async function authUser(req, res) {
   try {
     const { username, password } = req.body;
@@ -80,3 +96,4 @@ exports.createUser = createUser;
 exports.findAllUsers = findAllUsers;
 exports.findUserById = findUserById;
 exports.authUser = authUser;
+exports.deleteUserById = deleteUserById;
